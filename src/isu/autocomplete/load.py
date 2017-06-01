@@ -68,7 +68,7 @@ def phrases(tree, count=2, pcount=100):
             print("Dumping for {} of {}".format(cnt, all_count))
             dump_cache(DUMP_FILE, sents, cnt)
     else:
-        print("No records found.")
+        print("No additional records found.")
     dump_cache(DUMP_FILE, sents, cnt)
     return sents
 
@@ -96,10 +96,6 @@ def main():
     print("Records No: {}".format(rl))
     # phs = phrases(t, 200, 100)
     phs = phrases(t, -1, 100)
-    pprint(phs)
+    # pprint(phs)
     # example2(t)
-    quit()
-
-
-if __name__ == "__main__":
-    main()
+    return phs

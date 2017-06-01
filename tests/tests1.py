@@ -35,7 +35,9 @@ class TestLoader:
         # Hans Zimmer
 
     def test_4_preparation(self):
-        pass
+        from isu.autocomplete import load
+        phrases = load.main()
+        assert phrases
 
     #@nottest
     def test_30_run_main(self):
