@@ -1,6 +1,5 @@
 from nose.tools import raises, nottest
-import isu.autocomplete.analysis
-import prepoc
+from isu.autocomplete import analysis, preproc
 import pprint
 
 
@@ -11,11 +10,11 @@ class TestLoader:
     def tearDown(self):
         pass
 
-    @nottest
+    #@nottest
     def test_tokenizer(self):
         prepoc.main()
 
-    @nottest
+    #@nottest
     def test_tokenizer_mkb10(self):
         TXT = "пациент доволен"
         mkb10 = "I80.36"
