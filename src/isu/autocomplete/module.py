@@ -1,8 +1,9 @@
 from lxml import etree
 import collections
 import csv
+from isu.autocomplete import datafile
 
-DUMP = "../eugeneai.csv"
+DUMP = datafile("eugeneai.csv")
 
 REPLS = [
     ("\\r\\n", "\n"),
@@ -11,7 +12,7 @@ REPLS = [
     ("\x5c\x74", "\t"),
 ]
 
-#print(REPLS)
+# print(REPLS)
 
 
 def uncode(t):

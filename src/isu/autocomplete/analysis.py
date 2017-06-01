@@ -2,13 +2,14 @@
 
 import pickle
 import pprint
-from load import load_cache, DUMP_FILE, dump_cache
+from isu.autocomplete.load import load_cache, DUMP_FILE, dump_cache
 import marisa_trie
-
+from pkg_resources import resource_filename
+from isu.autocomplete import datafile
 
 sents = None
 
-FILTERED = "../filtered.pickle"
+FILTERED = datafile("filtered.pickle")
 
 
 def filter_data(sents):
@@ -117,7 +118,7 @@ def main(out_result=False):
     if out_result:
         slist = list(sents.items())
         slist.sort(key=lambda x: -x[1])
-        with open("../result.txt", "w") as out:
+        with open(datafile("result.txt"), "w") as out:
             pprint.pprint(slist, out)
     helm = Helm(sents)
     return helm

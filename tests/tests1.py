@@ -1,5 +1,5 @@
 from nose.tools import raises, nottest
-import analysis
+import isu.autocomplete.analysis
 import prepoc
 import pprint
 

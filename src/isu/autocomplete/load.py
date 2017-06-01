@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 from lxml import etree
-from prepoc import tokenizer
+from isu.autocomplete.preproc import tokenizer
 from pprint import pprint
 import pickle
 import sys
+from isu.autocomplete import datafile
 
 # TUTORIAL is here:
 
-DUMP_FILE="../onko-texts.pickle"
+DUMP_FILE = datafile("onko-texts.pickle")
+
 
 def load(xmlfile):
     with open(xmlfile, "rb") as inp:
@@ -20,30 +22,32 @@ def dump_cache(filename, sents, cnt=None):
     print("Saving the progress into a pickle")
     with open(filename, "wb") as f:
         if cnt is not None:
-            sents["__count__"]=cnt
+            sents["__count__"] = cnt
         pickle.dump(sents, f)
         f.flush()
         if cnt is not None:
             del sents["__count__"]
 
+
 def load_cache(filename):
     print(filename)
     with open(filename, "rb") as f:
         print("Loading pickle.")
-        sents=pickle.load(f)
+        sents = pickle.load(f)
         if "__count__" in sents:
-            cnt=sents["__count__"]
+            cnt = sents["__count__"]
             del sents["__count__"]
         else:
-            cnt=None
-    return sents,cnt
+            cnt = None
+    return sents, cnt
+
 
 def phrases(tree, count=2, pcount=100):
     sents = {}
     all_count = count
     # TODO: Load progress
     try:
-        sents,lcnt=load_cache(DUMP_FILE)
+        sents, lcnt = load_cache(DUMP_FILE)
     except OSError:
         print("No Progress found!")
         lcnt = 0
@@ -51,28 +55,28 @@ def phrases(tree, count=2, pcount=100):
     for node in tree.iterfind("//row"):
         if count == 0:
             break
-        if cnt<lcnt:
-            cnt+=1
+        if cnt < lcnt:
+            cnt += 1
             continue
-        mkb=node.get("mkb10")
+        mkb = node.get("mkb10")
         sents = tokenizer(node.text, sents, error_mark="-", mkb10=mkb)
         count -= 1
         print(".", end="")
         sys.stdout.flush()
-        cnt +=1
+        cnt += 1
         if cnt % pcount == 0:
             print("Dumping for {} of {}".format(cnt, all_count))
             dump_cache(DUMP_FILE, sents, cnt)
     else:
         print("No records found.")
-    dump_cache(DUMP_FILE,sents,cnt)
+    dump_cache(DUMP_FILE, sents, cnt)
     return sents
 
 
 def example2(tree, count=2):
-    print("="*40)
+    print("=" * 40)
     print("Printing some diagnoses.")
-    print("="*40)
+    print("=" * 40)
     for diagnose in tree.xpath("//row/diagnose/text()"):
         print(diagnose)
         count -= 1
@@ -82,7 +86,8 @@ def example2(tree, count=2):
         print("No records found.")
 
 
-XML = "../eugeneai.xml"
+XML = datafile("eugeneai.xml")
+
 
 def main():
     t = load(XML)
@@ -94,6 +99,7 @@ def main():
     pprint(phs)
     # example2(t)
     quit()
+
 
 if __name__ == "__main__":
     main()
