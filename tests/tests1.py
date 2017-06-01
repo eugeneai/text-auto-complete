@@ -11,15 +11,15 @@ class TestLoader:
         pass
 
     #@nottest
-    def test_tokenizer(self):
-        prepoc.main()
+    def test_1_tokenizer(self):
+        preproc.main()
 
     #@nottest
-    def test_tokenizer_mkb10(self):
+    def test_2_tokenizer_mkb10(self):
         TXT = "пациент доволен"
         mkb10 = "I80.36"
         d = {}
-        d = prepoc.tokenizer(TXT, d, mkb10=mkb10)
+        d = preproc.tokenizer(TXT, d, mkb10=mkb10)
         # raise RuntimeError(d)
         print(d)
         data = d[('пациент', 'довольный')]
@@ -34,8 +34,11 @@ class TestLoader:
         print("Test:", helm.query("I8", prefixes=["пац",  "дов"]))
         # Hans Zimmer
 
+    def test_4_preparation(self):
+        pass
+
     #@nottest
-    def test_run_main(self):
+    def test_30_run_main(self):
         helm = analysis.main()
         prf = ["гип", "арт"]
         rc = helm.query(mkb10="C1", prefixes=prf)

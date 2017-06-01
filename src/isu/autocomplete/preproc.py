@@ -126,7 +126,6 @@ def main():
     """
     d = {}
     d = tokenizer(TXT, d)
-    d = tokenizer(TXT, d)
     print(TXT)
     pprint(d)
 
