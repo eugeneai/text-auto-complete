@@ -5,9 +5,22 @@ import os.path
 import os
 import logging
 import sys
+import glob
 
 logging.basicConfig(level=logging.DEBUG)
+
+PWD = os.getcwd()
+
+
+def templ(name):
+    return os.path.join(PWD, "indripress", name + ".pt")
+
+
 logging.debug("Current dir is {}".format(os.getcwd()))
+
+
+def main_page(request):
+    return {"title": "Диагноз"}
 
 
 def hello_world(request):
@@ -15,11 +28,25 @@ def hello_world(request):
 
 
 def main():
-    config = Configurator()
+    config = Configurator(settings={
+        'pyramid.reload_templates': True,
+        'pyramid.debug_templates': True
+    })
 
     config.add_route('hello', '/hello/{name}')
+    config.add_route('editor', '/')
     config.add_view(hello_world, route_name='hello')
+    config.add_view(main_page, route_name='editor',
+                    renderer=templ("index"))
+    config.include('pyramid_debugtoolbar')
     config.include('pyramid_chameleon')
+
+    statics = glob.glob("*/*/")
+    for st in statics:
+        path = os.path.join(PWD, st)
+        name = st.replace("indripress/", '').replace("/", '')
+        logging.debug("path = {}, name = {}".format(path, name))
+        config.add_static_view(name=name, path=path)
 
     app = config.make_wsgi_app()
     net, port = '0.0.0.0', 8888
