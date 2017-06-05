@@ -48,6 +48,9 @@ def main():
         logging.debug("path = {}, name = {}".format(path, name))
         config.add_static_view(name=name, path=path)
 
+    config.add_static_view(name="css", path=os.path.join(PWD, 'css'))
+    config.add_static_view(name="js", path=os.path.join(PWD, 'js'))
+
     app = config.make_wsgi_app()
     net, port = '0.0.0.0', 8888
     logging.info("Starting server on {}:{}".format(net, port))

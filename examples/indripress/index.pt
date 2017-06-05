@@ -13,7 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        type="text/css" media="all" rel="stylesheet">
+              type="text/css" media="all" rel="stylesheet">
+        <link rel="stylesheet" href="css/autocomplete.css" type="text/css" media="screen">
     </head>
     <body id="top">
         <!-- ################################################################################################ -->
@@ -94,18 +95,41 @@
             class="bgded overlay"
             style="background-color:rgb(0,43,92);height:55em;"
         >
-            <div id="pageintro" class="hoc clear">
+            <div class="hoc clear" style="padding-top:3em;">
+                <style>
+                 label {
+                     padding-top: 2em;
+                 }
+                </style>
                 <h6 class="heading" tal:content="title"></h6>
                 <form method="post" action="#">
                     <fieldset>
                         <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
+                            <label for="diag" class="col-sm-2 col-form-label col-form-label-lg"
+                            >Диагноз</label>
+                            <textarea type="text"
+                                      class="form-control form-control-lg"
+                                      id="diag"
+                                      placeholder="Диагноз в вербальной форме"
+                                      rows="3"
+                            ></textarea>
+                            <label for="mkb10" class="col-sm-2 col-form-label col-form-label-lg"
+                            >Диагноз МКБ-10</label>
+                            <input type="text"
+                                   class="form-control form-control-lg"
+                                   id="mkb10"
+                                   placeholder="Код МКБ-10">
 
-                        <legend>Newsletter:</legend>
-                        <input type="text" value="" placeholder="МКБ-10">
+                            <label for="description" class="col-sm-2 col-form-label col-form-label-lg"
+                            >Описание</label>
+                            <textarea type="text"
+                                      class="form-control form-control-lg"
+                                      id="description"
+                                      placeholder="Диагноз в вербальной форме"
+                                      rows="9"
+                            ></textarea>
+                        </div>
+
                         <br/>
                         <button class="btn btn-default" type="submit" value="submit">Submit</button>
                     </fieldset>
@@ -374,5 +398,70 @@
         <script src="layout/scripts/jquery.mobilemenu.js"></script>
         <script src="layout/scripts/jquery.flexslider-min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/tinymce.js"></script>
+        <script type="text/javascript" src="js/plugin.js"></script>
+        <script type="text/javascript">
+        tinyMCE.init({
+            mode : "exact",
+            elements : "description",
+            plugins : 'mention',
+            mentions: {
+                source: [
+                    { name: 'Jammie Marbury'},
+                    { name: 'Jenniffer Caffey'},
+                    { name: 'Paul Hollen'},
+                    { name: 'Isabel Lenzi'},
+                    { name: 'Rebecka Kennell'},
+                    { name: 'Collette Janis'},
+                    { name: 'Bryon Kawamoto'},
+                    { name: 'Jerald Mozingo'},
+                    { name: 'Carlena Bachelor'},
+                    { name: 'Jacinta Diver'},
+                    { name: 'Cameron Libbey'},
+                    { name: 'Romana Matsunaga'},
+                    { name: 'Laurette Ernst'},
+                    { name: 'Gilma Groom'},
+                    { name: 'Lewis Gillis'},
+                    { name: 'Weston Defoor'},
+                    { name: 'Alejandrina Simmer'},
+                    { name: 'Alejandra Helbing'},
+                    { name: 'Yvette Fielding'},
+                    { name: 'Shirely Besaw'},
+                    { name: 'Laurel Dafoe'},
+                    { name: 'Shantel Calley'},
+                    { name: 'Aleta Bolyard'},
+                    { name: 'Tuyet Ybarbo'},
+                    { name: 'Christy Voris'},
+                    { name: 'Hilda Hamlett'},
+                    { name: 'Ying Tefft'},
+                    { name: 'Lilliana Fulford'},
+                    { name: 'Jama Brough'},
+                    { name: 'Minerva Bixby'},
+                    { name: 'Jacquelin Lauber'},
+                    { name: 'Lanette Hoke'},
+                    { name: 'Virgil Roehr'},
+                    { name: 'Melodi Rathburn'},
+                    { name: 'Tressa Cade'},
+                    { name: 'Florentina Seigel'},
+                    { name: 'Santina Maust'},
+                    { name: 'Sean Spidle'},
+                    { name: 'Henrietta Murtagh'},
+                    { name: 'Matilde Tynan'},
+                    { name: 'Claude Putman'},
+                    { name: 'Ardell Castiglia'},
+                    { name: 'Alona Mally'},
+                    { name: 'Elizabet Gebhart'},
+                    { name: 'Maye Wilken'},
+                    { name: 'Xenia Gin'},
+                    { name: 'Edith Schebler'},
+                    { name: 'Brianna Repka'},
+                    { name: 'Marcella Thronson'},
+                    { name: 'Theresia Provenzano'}
+                ]
+            },
+        });
+
+    </script>
     </body>
 </html>
