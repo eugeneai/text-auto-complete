@@ -12,6 +12,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        type="text/css" media="all" rel="stylesheet">
     </head>
     <body id="top">
         <!-- ################################################################################################ -->
@@ -88,55 +90,72 @@
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
-        <div class="bgded overlay" style="background-color:rgb(0,0,0);height:55em;"
+        <div
+            class="bgded overlay"
+            style="background-color:rgb(0,43,92);height:55em;"
         >
             <div id="pageintro" class="hoc clear">
-                <!-- ################################################################################################ -->
-                <div class="flexslider basicslider" tal:condition="nothing">
-                    <ul class="slides">
-                        <li>
-                            <article tal:condition="nothing">
-                                <p>Sit amet sodales non feugiat curabitur</p>
-                                <h3 class="heading">Tellus porttitor</h3>
-                                <p>Pellentesque lacus a lacinia eleifend magna nisl dictum justo a ultrices dolor.</p>
-                                <footer>
-                                    <ul class="nospace inline pushright">
-                                        <li><a class="btn" href="#">Maecenas pulvinar</a></li>
-                                        <li><a class="btn inverse" href="#">Congue porttitor</a></li>
-                                    </ul>
-                                </footer>
-                            </article>
-                        </li>
-                        <li>
-                            <article>
-                                <p>Dignissim molestie neque ultricies vitae</p>
-                                <h3 class="heading">Nunc eleifend</h3>
-                                <p>Erat urna et blandit lacus porttitor vel sed aliquet elit sed malesuada tincidunt.</p>
-                                <footer>
-                                    <ul class="nospace inline pushright">
-                                        <li><a class="btn" href="#">Etiam cursus</a></li>
-                                        <li><a class="btn inverse" href="#">Etiam tempus</a></li>
-                                    </ul>
-                                </footer>
-                            </article>
-                        </li>
-                        <li>
-                            <article>
-                                <p>Ornare mi eget dictum orci nisi auctor turpis</p>
-                                <h3 class="heading">Diam convallis</h3>
-                                <p>Placerat et nisl in vulputate maecenas in aliquet odio nulla dignissim consectetur.</p>
-                                <footer>
-                                    <ul class="nospace inline pushright">
-                                        <li><a class="btn" href="#">Elementum consequat</a></li>
-                                        <li><a class="btn inverse" href="#">Dictum magna</a></li>
-                                    </ul>
-                                </footer>
-                            </article>
-                        </li>
-                    </ul>
-                </div>
-                <!-- ################################################################################################ -->
+                <h6 class="heading" tal:content="title"></h6>
+                <form method="post" action="#">
+                    <fieldset>
+                        <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+
+                        <legend>Newsletter:</legend>
+                        <input type="text" value="" placeholder="МКБ-10">
+                        <br/>
+                        <button class="btn btn-default" type="submit" value="submit">Submit</button>
+                    </fieldset>
+                </form>
             </div>
+            <!-- ################################################################################################ -->
+            <div class="flexslider basicslider" tal:condition="nothing">
+                <ul class="slides">
+                    <li>
+                        <article tal:condition="nothing">
+                            <p>Sit amet sodales non feugiat curabitur</p>
+                            <h3 class="heading">Tellus porttitor</h3>
+                            <p>Pellentesque lacus a lacinia eleifend magna nisl dictum justo a ultrices dolor.</p>
+                            <footer>
+                                <ul class="nospace inline pushright">
+                                    <li><a class="btn" href="#">Maecenas pulvinar</a></li>
+                                    <li><a class="btn inverse" href="#">Congue porttitor</a></li>
+                                </ul>
+                            </footer>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <p>Dignissim molestie neque ultricies vitae</p>
+                            <h3 class="heading">Nunc eleifend</h3>
+                            <p>Erat urna et blandit lacus porttitor vel sed aliquet elit sed malesuada tincidunt.</p>
+                            <footer>
+                                <ul class="nospace inline pushright">
+                                    <li><a class="btn" href="#">Etiam cursus</a></li>
+                                    <li><a class="btn inverse" href="#">Etiam tempus</a></li>
+                                </ul>
+                            </footer>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <p>Ornare mi eget dictum orci nisi auctor turpis</p>
+                            <h3 class="heading">Diam convallis</h3>
+                            <p>Placerat et nisl in vulputate maecenas in aliquet odio nulla dignissim consectetur.</p>
+                            <footer>
+                                <ul class="nospace inline pushright">
+                                    <li><a class="btn" href="#">Elementum consequat</a></li>
+                                    <li><a class="btn inverse" href="#">Dictum magna</a></li>
+                                </ul>
+                            </footer>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+            <!-- ################################################################################################ -->
         </div>
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
@@ -354,5 +373,6 @@
         <script src="layout/scripts/jquery.backtotop.js"></script>
         <script src="layout/scripts/jquery.mobilemenu.js"></script>
         <script src="layout/scripts/jquery.flexslider-min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>
