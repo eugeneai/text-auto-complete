@@ -407,7 +407,7 @@
              elements : "description",
              plugins : 'mention',
              mentions: {
-                 source: function () {
+                 source: function (pattern) {
                      var answer;
                      var diag = $("#diag").val();
                      var mkb10= $("#mkb10").val();
@@ -417,7 +417,8 @@
                          async: false,
                          data: {
                              diag: diag,
-                             mkb10: $("#mkb10").val()
+                             mkb10: $("#mkb10").val(),
+                             pattern: pattern
                          }
                      }).done(function (data) {
                          answer = data;

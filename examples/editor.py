@@ -4,8 +4,9 @@ from pyramid.response import Response
 import os.path
 import os
 import logging
-import sys
 import glob
+import pprint
+from isu.autocomplete import analysis
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -18,6 +19,8 @@ def templ(name):
 
 logging.debug("Current dir is {}".format(os.getcwd()))
 
+HELM = analysis.main()
+
 
 def main_page(request):
     return {"title": "Диагноз"}
@@ -28,59 +31,16 @@ def hello_world(request):
 
 
 def helm(request):
-    return [
-        {"name": 'James Harden'},
-        {"name": 'Фалалеев'},
-        {"name": 'Jenniffer Caffey'},
-        {"name": 'Paul Hollen'},
-        {"name": 'Isabel Lenzi'},
-        {"name": 'Rebecka Kennell'},
-        {"name": 'Collette Janis'},
-        {"name": 'Bryon Kawamoto'},
-        {"name": 'Jerald Mozingo'},
-        {"name": 'Carlena Bachelor'},
-        {"name": 'Jacinta Diver'},
-        {"name": 'Cameron Libbey'},
-        {"name": 'Romana Matsunaga'},
-        {"name": 'Laurette Ernst'},
-        {"name": 'Gilma Groom'},
-        {"name": 'Lewis Gillis'},
-        {"name": 'Weston Defoor'},
-        {"name": 'Alejandrina Simmer'},
-        {"name": 'Alejandra Helbing'},
-        {"name": 'Yvette Fielding'},
-        {"name": 'Shirely Besaw'},
-        {"name": 'Laurel Dafoe'},
-        {"name": 'Shantel Calley'},
-        {"name": 'Aleta Bolyard'},
-        {"name": 'Tuyet Ybarbo'},
-        {"name": 'Christy Voris'},
-        {"name": 'Hilda Hamlett'},
-        {"name": 'Ying Tefft'},
-        {"name": 'Lilliana Fulford'},
-        {"name": 'Jama Brough'},
-        {"name": 'Minerva Bixby'},
-        {"name": 'Jacquelin Lauber'},
-        {"name": 'Lanette Hoke'},
-        {"name": 'Virgil Roehr'},
-        {"name": 'Melodi Rathburn'},
-        {"name": 'Tressa Cade'},
-        {"name": 'Florentina Seigel'},
-        {"name": 'Santina Maust'},
-        {"name": 'Sean Spidle'},
-        {"name": 'Henrietta Murtagh'},
-        {"name": 'Matilde Tynan'},
-        {"name": 'Claude Putman'},
-        {"name": 'Ardell Castiglia'},
-        {"name": 'Alona Mally'},
-        {"name": 'Elizabet Gebhart'},
-        {"name": 'Maye Wilken'},
-        {"name": 'Xenia Gin'},
-        {"name": 'Edith Schebler'},
-        {"name": 'Brianna Repka'},
-        {"name": 'Marcella Thronson'},
-        {"name": 'Theresia Provenzano'}
-    ]
+    data = request.GET
+    diag = data["diag"]
+    mkb10 = data["mkb10"]
+    pattern = data["pattern"]
+    prf = pattern.strip().split(" ")
+    rc = HELM.query(mkb10=mkb10, prefixes=prf)
+    rc = [{"name": " ".join(val)} for val in rc]
+    logging.debug("Prefix = '{}', mkb10='{}'".format(pattern, mkb10))
+    logging.debug(pprint.pformat(rc))
+    return rc
 
 
 def main():
