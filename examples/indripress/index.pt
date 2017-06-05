@@ -131,7 +131,7 @@
                         </div>
 
                         <br/>
-                        <button class="btn btn-default" type="submit" value="submit">Submit</button>
+                        <button class="btn btn-primary" type="submit" value="submit">Submit</button>
                     </fieldset>
                 </form>
             </div>
@@ -402,66 +402,32 @@
         <script src="js/tinymce.js"></script>
         <script type="text/javascript" src="js/plugin.js"></script>
         <script type="text/javascript">
-        tinyMCE.init({
-            mode : "exact",
-            elements : "description",
-            plugins : 'mention',
-            mentions: {
-                source: [
-                    { name: 'Jammie Marbury'},
-                    { name: 'Jenniffer Caffey'},
-                    { name: 'Paul Hollen'},
-                    { name: 'Isabel Lenzi'},
-                    { name: 'Rebecka Kennell'},
-                    { name: 'Collette Janis'},
-                    { name: 'Bryon Kawamoto'},
-                    { name: 'Jerald Mozingo'},
-                    { name: 'Carlena Bachelor'},
-                    { name: 'Jacinta Diver'},
-                    { name: 'Cameron Libbey'},
-                    { name: 'Romana Matsunaga'},
-                    { name: 'Laurette Ernst'},
-                    { name: 'Gilma Groom'},
-                    { name: 'Lewis Gillis'},
-                    { name: 'Weston Defoor'},
-                    { name: 'Alejandrina Simmer'},
-                    { name: 'Alejandra Helbing'},
-                    { name: 'Yvette Fielding'},
-                    { name: 'Shirely Besaw'},
-                    { name: 'Laurel Dafoe'},
-                    { name: 'Shantel Calley'},
-                    { name: 'Aleta Bolyard'},
-                    { name: 'Tuyet Ybarbo'},
-                    { name: 'Christy Voris'},
-                    { name: 'Hilda Hamlett'},
-                    { name: 'Ying Tefft'},
-                    { name: 'Lilliana Fulford'},
-                    { name: 'Jama Brough'},
-                    { name: 'Minerva Bixby'},
-                    { name: 'Jacquelin Lauber'},
-                    { name: 'Lanette Hoke'},
-                    { name: 'Virgil Roehr'},
-                    { name: 'Melodi Rathburn'},
-                    { name: 'Tressa Cade'},
-                    { name: 'Florentina Seigel'},
-                    { name: 'Santina Maust'},
-                    { name: 'Sean Spidle'},
-                    { name: 'Henrietta Murtagh'},
-                    { name: 'Matilde Tynan'},
-                    { name: 'Claude Putman'},
-                    { name: 'Ardell Castiglia'},
-                    { name: 'Alona Mally'},
-                    { name: 'Elizabet Gebhart'},
-                    { name: 'Maye Wilken'},
-                    { name: 'Xenia Gin'},
-                    { name: 'Edith Schebler'},
-                    { name: 'Brianna Repka'},
-                    { name: 'Marcella Thronson'},
-                    { name: 'Theresia Provenzano'}
-                ]
-            },
-        });
+         tinyMCE.init({
+             mode : "exact",
+             elements : "description",
+             plugins : 'mention',
+             mentions: {
+                 source: function () {
+                     var answer;
+                     var diag = $("#diag").val();
+                     var mkb10= $("#mkb10").val();
+                     console.log(diag, mkb10);
+                     $.ajax({
+                         url:"/api/helm",
+                         async: false,
+                         data: {
+                             diag: diag,
+                             mkb10: $("#mkb10").val()
+                         }
+                     }).done(function (data) {
+                         answer = data;
+                     });
 
-    </script>
+                     return answer;
+                 }
+             }
+         });
+
+        </script>
     </body>
 </html>
