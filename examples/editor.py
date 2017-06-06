@@ -32,7 +32,7 @@ def hello_world(request):
 
 def helm(request):
     data = request.GET
-    diag = data["diag"]
+    # diag = data["diag"]
     mkb10 = data["mkb10"]
     pattern = data["pattern"]
     prf = pattern.strip().split(" ")
